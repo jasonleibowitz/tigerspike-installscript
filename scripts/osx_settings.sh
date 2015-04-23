@@ -123,3 +123,8 @@ echo ""
 echo "Enabling root user"
 sudo dsenableroot
 echo -e "newyork123admin\nnewyork123admin" | passwd root
+
+# Configure App Licenses
+echo ""
+echo "Configuring Microsoft Office"
+sudo defaults write com.microsoft.office.licensing sequence -string ${ms_office_license_key}

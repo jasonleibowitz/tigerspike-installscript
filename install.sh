@@ -1,3 +1,4 @@
+#!/bin/bash
 #  _   _                           _ _
 # | |_(_) __ _  ___ _ __ ___ _ __ (_) | _____
 # | __| |/ _` |/ _ \ '__/ __| '_ \| | |/ / _ \
@@ -14,12 +15,11 @@
 #
 # Automation Script for setting up a Mac at Tigerspike
 #
-
 osx_version=$(sw_vers -productVersion)
 SRC_DIR=~/.installscript
 SCRIPTS=$SRC_DIR/scripts
 SETTINGS=$SRC_DIR/settings
-INSTALL_REPO=https://github.com/jasonleibowitz/installfest_scripts.git
+INSTALL_REPO=https://github.com/jasonleibowitz/tigerspike-installscript.git
 
 # Functions
 
@@ -27,10 +27,42 @@ function pause_awhile () {
    read -p "$* Press Enter to continue"
 }
 
+clear
+echo "  _   _                           _ _         "
+echo " | |_(_) __ _  ___ _ __ ___ _ __ (_) | _____  "
+echo " | __| |/ _  |/ _ \ |__/ __|  _ \| | |/ / _ \ "
+echo " | |_| | (_| |  __/ |  \__ \ |_) | |   <  __/ "
+echo "  \__|_|\__, |\___|_|  |___/ .__/|_|_|\_\___| "
+echo "        |___/              |_|                "
+
+echo "Welcome to the Tigerspike Installscript. You will be asked a few questions and then we will take care of the rest."
+echo "We will be configuring all settings and installing all programs for this Tigerspike employee."
+echo ""
+echo "Please be sure the laptop is plugged in."
+pause_awhile
+
+
 # Get Variables from user
+echo ""
 read -p "Enter the user's full name: "	user_name
 read -p "Enter this computer's AssetID: " asset_id
-read -p "Enter the license for MS Office" ms_office_license_key
+read -p "What is this user's microsoft office license key? " ms_office_license_key
+
+echo "What is the job title of this machine's owner?"
+echo "Please enter a number that corresponds with their title."
+echo "1 - Project Manager"
+echo "2 - UX Designer"
+echo ""
+read job_title
+
+if [ ${job_title} == 1 ]; then
+	echo "Project Manager"
+	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
+	read -p "What is this user's OmniPlan license key? " omniplan_license_key
+elif [ $(job_title) == 2 ]; then
+	echo "UX Designer"
+	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
+fi
 
 # To Do: Add support to older version other than just Yosemite - JL
 
