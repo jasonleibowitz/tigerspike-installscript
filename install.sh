@@ -129,4 +129,11 @@ source $SCRIPT/terminal.sh
 pause_awhile "Updating System Settings"
 source $SCRIPT/osx_settings.sh
 
+# Save System Stats to Desktop
+pause_awhile "Saving System Stats"
+source $SCRIPT/stats.sh
+
 source ~/.bash_profile
+sudo killall Dock		# Restart the Dock
+sudo killall Finder		# Restart Finder
+sudo shutdown -r now	# Restart the computer
