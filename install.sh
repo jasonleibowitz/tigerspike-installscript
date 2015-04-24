@@ -48,23 +48,23 @@ pause_awhile
 echo ""
 read -p "Enter the user's full name: "	user_name
 read -p "Enter this computer's AssetID: " asset_id
-read -p "What is this user's microsoft office license key? " ms_office_license_key
+# read -p "What is this user's microsoft office license key? " ms_office_license_key
 
-echo "What is the job title of this machine's owner?"
-echo "Please enter a number that corresponds with their title."
-echo "1 - Project Manager"
-echo "2 - UX Designer"
-echo ""
-read -p "Number: "	job_title
+# echo "What is the job title of this machine's owner?"
+# echo "Please enter a number that corresponds with their title."
+# echo "1 - Project Manager"
+# echo "2 - UX Designer"
+# echo ""
+# read -p "Number: "	job_title
 
-if [ ${job_title} == 1 ]; then
-	echo "Project Manager"
-	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
-	read -p "What is this user's OmniPlan license key? " omniplan_license_key
-elif [ ${job_title} == 2 ]; then
-	echo "UX Designer"
-	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
-fi
+# if [ ${job_title} == 1 ]; then
+# 	echo "Project Manager"
+# 	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
+# 	read -p "What is this user's OmniPlan license key? " omniplan_license_key
+# elif [ ${job_title} == 2 ]; then
+# 	echo "UX Designer"
+# 	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
+# fi
 
 # To Do: Add support to older version other than just Yosemite - JL
 
@@ -84,7 +84,8 @@ echo "We are going to need your sudo password"
 sudo echo "Thanks"
 
 # Keep-alive: update existing 'sudo' time stamp until the script has finished.
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null
+# To Do: This isn't working. -JL
+# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null
 
 # Ensure we're updated and in control of the home folder
 echo "Let's make sure we have full control of your user folder."
