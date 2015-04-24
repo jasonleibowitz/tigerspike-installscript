@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copy over settings and back up bashprofile
 
 # Back up bash_profile and copy over new one

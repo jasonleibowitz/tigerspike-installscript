@@ -1,3 +1,5 @@
+#!/bin/bash
+
 install_dmg () {
   echo 'Hark, a dmg!'
   file_name="$1"

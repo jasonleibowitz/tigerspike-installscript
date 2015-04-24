@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # This will configure the machine to follow Tigerspike defaults
 
 echo "This script will make your Mac awesome!"

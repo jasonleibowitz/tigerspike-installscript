@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Setting Solorized Colors for Terminal..."
 open "$SETTINGS/dotfiles/Solarized Dark.terminal"
 sleep 1

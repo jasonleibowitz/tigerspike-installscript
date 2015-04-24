@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # This script installs homebrew, our package manager
 # http://brew.sh/
 

@@ -1,3 +1,4 @@
+#!/bin/bash
 # Get System Stats
 
 # Write File to Desktop with System Info #
