@@ -55,13 +55,13 @@ echo "Please enter a number that corresponds with their title."
 echo "1 - Project Manager"
 echo "2 - UX Designer"
 echo ""
-read -p "Number: " job_title
+read -p "Number: "	job_title
 
 if [ ${job_title} == 1 ]; then
 	echo "Project Manager"
 	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
 	read -p "What is this user's OmniPlan license key? " omniplan_license_key
-elif [ $(job_title) == 2 ]; then
+elif [ ${job_title} == 2 ]; then
 	echo "UX Designer"
 	read -p "What is this user's OmniGraffle license key? " omnigraffle_license_key
 fi
