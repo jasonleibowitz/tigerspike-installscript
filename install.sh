@@ -120,19 +120,19 @@ source $SCRIPTS/settings.sh
 
 # Apps
 pause_awhile "Installing applications for development"
-source $SCRIPT/apps.sh
+source $SCRIPTS/apps.sh
 
 # Setting Terminal Colors
 pause_awhile "Setting Terminal Settings"
-source $SCRIPT/terminal.sh
+source $SCRIPTS/terminal.sh
 
 # Tigerspike OSX Settings
 pause_awhile "Updating System Settings"
-source $SCRIPT/osx_settings.sh
+source $SCRIPTS/osx_settings.sh
 
 # Save System Stats to Desktop
 pause_awhile "Saving System Stats"
-source $SCRIPT/stats.sh
+source $SCRIPTS/stats.sh
 
 source ~/.bash_profile
 sudo killall Dock		# Restart the Dock
