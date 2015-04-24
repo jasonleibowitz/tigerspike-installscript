@@ -37,6 +37,11 @@ echo "Enable Remote Login"
 systemsetup -setremotelogin on
 
 echo ""
+echo "Enable Screen Sharing"
+sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist
+
+echo ""
 echo "Expand Print Panel by Default"
 sudo defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
@@ -128,3 +133,17 @@ echo -e "newyork123admin\nnewyork123admin" | passwd root
 echo ""
 echo "Configuring Microsoft Office"
 sudo defaults write com.microsoft.office.licensing sequence -string ${ms_office_license_key}
+
+# Configure Printer
+# http://d43.me/blog/1826/add-a-printer-via-command-line-in-os-x/
+echo ""
+echo "Configuring Printer"
+lpadmin -E -p "Canon_5030" -v "lpd://192.168.1.20/" -P "../settings/drivers/Canon_5030.ppd" -o printer-is-shared=false; cupsenable "Canon_5030"; cupsaccept "Canon_5030"
+
+# Set Computer Name to Asset ID
+echo ""
+echo "Setting Computer Name to AssetID"
+sudo scutil --set HostName ${asset_id}
+sudo scutil --set LocalHostName ${asset_id}
+sudo scutil --set ComputerName ${asset_id}
+dscacheutil -flushcache
