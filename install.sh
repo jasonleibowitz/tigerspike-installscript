@@ -55,7 +55,7 @@ echo "Please enter a number that corresponds with their title."
 echo "1 - Project Manager"
 echo "2 - UX Designer"
 echo ""
-read -p job_title
+read -p "" job_title
 
 if [ ${job_title} == 1 ]; then
 	echo "Project Manager"
