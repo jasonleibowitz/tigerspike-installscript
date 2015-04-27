@@ -9,6 +9,12 @@ echo ""
 echo "Automatically quit the printer app once the print job is complete"
 sudo defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
+# Configure Printer
+# http://d43.me/blog/1826/add-a-printer-via-command-line-in-os-x/
+echo ""
+echo "Configuring Printer"
+lpadmin -E -p "Canon_5030" -v "lpd://192.168.1.20/" -P "../settings/drivers/Canon_5030.ppd" -o printer-is-shared=false; cupsenable "Canon_5030"; cupsaccept "Canon_5030"
+
 echo ""
 echo "Avoid Creating DS_Store files on Network Volumes"
 sudo defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -128,8 +134,9 @@ blueutil power 0
 
 echo ""
 echo "Set Desktop Background"
-sudo cp -sF settings/images/background.png /System/Library/CoreServices/DefaultDesktop.jpg
-sudo rm -rF /Library/Caches/com.apple.desktop.admin.png
+sudo rm /System/Library/CoreServices/DefaultDesktop.jpg
+sudo cp settings/images/background.jpg /System/Library/CoreServices/DefaultDesktop.jpg
+sudo rm /Library/Caches/com.apple.desktop.admin.png
 sudo cp settings/images/login_background.png /Library/Caches/com.apple.desktop.admin.png
 
 echo ""
@@ -146,12 +153,6 @@ sudo dsenableroot -u ${USER} -p newyork123 -r newyork123admin
 # echo ""
 # echo "Configuring Microsoft Office"
 # sudo defaults write com.microsoft.office.licensing sequence -string ${ms_office_license_key}
-
-# Configure Printer
-# http://d43.me/blog/1826/add-a-printer-via-command-line-in-os-x/
-echo ""
-echo "Configuring Printer"
-lpadmin -E -p "Canon_5030" -v "lpd://192.168.1.20/" -P "../settings/drivers/Canon_5030.ppd" -o printer-is-shared=false; cupsenable "Canon_5030"; cupsaccept "Canon_5030"
 
 # Set Computer Name to Asset ID
 echo ""
