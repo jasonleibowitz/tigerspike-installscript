@@ -113,7 +113,7 @@ sudo defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleAquaColo
 
 echo ""
 echo "Turn on Firewall"
-sudo defaults write /Library/Preferences com.apple.alf globalstate -int 1
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 echo ""
 echo "Enable tap to click"
@@ -128,19 +128,19 @@ blueutil power 0
 
 echo ""
 echo "Set Desktop Background"
-sudo ln -sF settings/images/background.png /System/Library/CoreServices/DefaultDesktop.prompting
+sudo cp -sF settings/images/background.png /System/Library/CoreServices/DefaultDesktop.jpg
 sudo rm -rF /Library/Caches/com.apple.desktop.admin.png
-sudo mv settings/images/login_background.png /Library/Caches/com.apple.desktop.admin.png
+sudo cp settings/images/login_background.png /Library/Caches/com.apple.desktop.admin.png
 
 echo ""
 echo "Set Screensaver Preferences"
-sudo defaults write com.apple.screensaver askForPassword -integer 1
-sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write com.apple.screensaver askForPassword -integer 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Enable root user
 echo ""
 echo "Enabling root user"
-sudo dsenableroot -p newyork123 -r newyork123admin
+sudo dsenableroot -u ${USER} -p newyork123 -r newyork123admin
 
 # Configure App Licenses
 # echo ""
