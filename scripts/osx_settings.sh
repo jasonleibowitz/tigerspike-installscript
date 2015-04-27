@@ -1,4 +1,5 @@
 #!/bin/bash
+# sudo opensnoop -n cfprefsd
 
 # This will configure the machine to follow Tigerspike defaults
 
@@ -28,7 +29,8 @@ sudo defaults write com.apple.frameworks.diskimages skip-verify-remote -bool tru
 
 echo ""
 echo "Displays do not have separate Spaces"
-sudo defaults write com.apple.spaces spans-displays -bool true
+sudo defaults write ~/Library/Preferences/com.apple.spaces.plist spans-displays -bool true
+sudo chmod 775 ~/Library/Preferences/com.apple.spaces.plist
 
 echo ""
 echo "Remove all default apps from the Dock"
@@ -40,8 +42,9 @@ systemsetup -setremotelogin on
 
 echo ""
 echo "Enable Screen Sharing"
-sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
-sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist
+# sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Disabled -bool false
+# sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -off -restart -agent -privs -all -allowAccessFor -allUsers
 
 echo ""
 echo "Expand Print Panel by Default"
@@ -65,20 +68,24 @@ sudo defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 echo ""
 echo "Show Path Bar in Finder"
-sudo defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowPathbar -bool true
 
 echo ""
 echo "Show status bar in Finder"
-sudo defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+
+echo ""
+echo "Show Sidebar in Finder"
+defaults write com.apple.finder ShowSidebar -bool true
 
 echo ""
 echo "New Finder Windows Show Home folder"
-sudo defaults write com.apple.finder NewWindowTarget -string 'PfHm'
-sudo defaults write com.apple.finder NewWindowTargetPath -string "file://localhost/Users/${USER}"
+defaults write com.apple.finder NewWindowTargetPath -string "~/"
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
 
 echo ""
 echo "Search the current folder by default"
-sudo defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 echo ""
 echo "Use list view in all Finder windows by default"
@@ -106,7 +113,7 @@ sudo defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleAquaColo
 
 echo ""
 echo "Turn on Firewall"
-sudo defaults write com.apple.alf.plist globalstate -integer 1
+sudo defaults write /Library/Preferences com.apple.alf globalstate -int 1
 
 echo ""
 echo "Enable tap to click"
@@ -116,20 +123,24 @@ sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -integer 1
 sudo defaults write com.apple.mouse.tapBehaviour -integer 1
 
 echo ""
+echo "Turn off Bluetooth"
+blueutil power 0
+
+echo ""
 echo "Set Desktop Background"
-sudo ln -sF ../settings/images/background.png /System/Library/CoreServices/DefaultDesktop.png
+sudo ln -sF settings/images/background.png /System/Library/CoreServices/DefaultDesktop.prompting
 sudo rm -rF /Library/Caches/com.apple.desktop.admin.png
-sudo mv ../settings/images/login_background.png /Library/Caches/com.apple.desktop.admin.png
+sudo mv settings/images/login_background.png /Library/Caches/com.apple.desktop.admin.png
 
 echo ""
 echo "Set Screensaver Preferences"
-sudo defautls write com.apple.screensaver askForPassword -integer 1
+sudo defaults write com.apple.screensaver askForPassword -integer 1
+sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Enable root user
 echo ""
 echo "Enabling root user"
-sudo dsenableroot
-echo -e "newyork123admin\nnewyork123admin" | passwd root
+sudo dsenableroot -p newyork123 -r newyork123admin
 
 # Configure App Licenses
 # echo ""

@@ -27,6 +27,7 @@ brew upgrade
 
 # Tigerspike Classics
 brew install git
+brew install blueutil
 brew install caskroom/cask/brew-cask
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 

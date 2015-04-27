@@ -1,5 +1,4 @@
 #!/bin/bash
-# sudo opensnoop -n cfprefsd
 #
 #  _   _                           _ _
 # | |_(_) __ _  ___ _ __ ___ _ __ (_) | _____
@@ -41,7 +40,7 @@ echo "Welcome to the Tigerspike Installscript. You will be asked a few questions
 echo "We will be configuring all settings and installing all programs for this Tigerspike employee."
 echo ""
 echo "Please be sure the laptop is plugged in."
-pause_awhile
+read -p "Press Enter to continue"
 
 
 # Get Variables from user
@@ -111,27 +110,33 @@ else
 fi
 
 # Install homebrew and formulae
-pause_awhile "Installing our Package Manager Homebrew"
+echo ""
+echo "Installing our Package Manager Homebrew"
 source $SCRIPTS/brew.sh
 
 # Additional settings and bash_profile
-pause_awhile "Config settings for terminal"
+echo ""
+echo "Config settings for terminal"
 source $SCRIPTS/settings.sh
 
 # Apps
-pause_awhile "Installing applications for development"
+echo ""
+echo "Installing applications for development"
 source $SCRIPTS/apps.sh
 
 # Setting Terminal Colors
-pause_awhile "Setting Terminal Settings"
+echo ""
+echo "Setting Terminal Settings"
 source $SCRIPTS/terminal.sh
 
 # Tigerspike OSX Settings
-pause_awhile "Updating System Settings"
+echo ""
+echo "Updating System Settings"
 source $SCRIPTS/osx_settings.sh
 
 # Save System Stats to Desktop
-pause_awhile "Saving System Stats"
+echo ""
+echo "Saving System Stats"
 source $SCRIPTS/stats.sh
 
 source ~/.bash_profile
